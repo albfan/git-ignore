@@ -15,6 +15,7 @@ somewhere in your $PATH and you are done
 
 ```bash
 $ git clone http://github.com/albfan/git-ignore
+$ cd git-ignore
 $ ln -s $(pwd)/git-ignore ~/bin/
 ```
 # Examples
