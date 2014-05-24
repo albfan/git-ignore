@@ -63,7 +63,7 @@ do
       --remove-last)
          sed -i '$d' $FILE_DEST
          exit 0;;   
-      -h|--help)
+      -h) # --help is captured by git and converted in git help ...
          help ;;
       --) 
          shift
