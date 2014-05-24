@@ -1,0 +1,84 @@
+#!/bin/bash
+
+#set -xv
+
+GIT_DIRECTORY=$(git rev-parse --git-dir)
+FILE_EXCLUDE="$GIT_DIRECTORY/info/exclude"
+FILE_IGNORE="$GIT_DIRECTORY/../.gitignore"
+FILE_DEST="$FILE_EXCLUDE"
+
+function help {
+   cat >&2 <<EOF
+
+Opciones:
+   -a, --add=FILE   Añade FILE a $FILE_EXCLUDE
+   -l, --list       Muestra el contenido actual de $FILE_EXCLUDE
+   -e, --edit       Abre el editor
+   -h, --help       Muestra esta ayuda
+   -f, --file=FILE  Archivo de destino personalizado FILE
+   -x, --exclude    Archivo de destino $FILE_EXCLUDE 
+   -i, --ignore     Archivo de destino $FILE_IGNORE
+
+EOF
+   exit 1
+}
+
+if [ $# == 0 ]
+then 
+   cat >&2 <<EOF
+
+Faltan argumentos
+EOF
+   help
+fi
+
+TEMP=$(getopt -o "leha:f:ix" -l add:,list,edit,remove-last,file:,help,ignore,exclude -n $0 -- "$@")
+
+# Se procesan los argumentos del script
+eval set -- "$TEMP"
+
+while true
+do
+   case "$1" in
+      -a|--add)
+         echo $2 >> "$FILE_DEST" 
+         shift 
+         ;;
+      -f|--file)
+         FILE_DEST="$2" 
+         shift 
+         ;;
+      -x|--exclude)
+         FILE_DEST="$FILE_EXCLUDE" 
+         ;;
+      -i|--ignore)
+         FILE_DEST="$FILE_IGNORE" 
+         ;;
+      -l|--list) 
+         cat $FILE_DEST
+         exit 0;;
+      -e|--edit)
+         vi $FILE_DEST
+         exit 0;;   
+      --remove-last)
+         sed -i '$d' $FILE_DEST
+         exit 0;;   
+      -h|--help)
+         help ;;
+      --) 
+         shift
+         for param
+         do
+            echo $param >> "$FILE_DEST" 
+         done   
+         break ;;
+      *) 
+         cat <&2 <<EOF
+
+Error, argumentos $@ desconocidos
+EOF
+         exit 1 ;;
+   esac
+   shift
+done
+
