@@ -40,9 +40,9 @@ Porcelain commands:
 Examples:
 
  $ git ignore target
- $ git ignore -i .project .classpath
- $ git ignore -i .project .classpath -x target
- $ git ignore -x --add *.bak
+ $ git ignore -i .project .classpath .settings
+ $ git ignore -i .idea/ '*.ipr' '*.iws' -x target
+ $ git ignore -x --add '*.bak'
  $ git ignore -x -e
 ```
 
