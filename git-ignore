@@ -10,15 +10,27 @@ FILE_DEST="$FILE_EXCLUDE"
 function help {
    cat >&2 <<EOF
 
-Opciones:
-   -a, --add=FILE   Añade FILE a $FILE_EXCLUDE
-   -l, --list       Muestra el contenido actual de $FILE_EXCLUDE
-   -e, --edit       Abre el editor
-   -h, --help       Muestra esta ayuda
-   -f, --file=FILE  Archivo de destino personalizado FILE
-   -x, --exclude    Archivo de destino $FILE_EXCLUDE 
-   -i, --ignore     Archivo de destino $FILE_IGNORE
+Target file configuration:
+   -x, --exclude    File target $FILE_EXCLUDE (default)
+   -i, --ignore     File target $FILE_IGNORE
+   -f, --file=FILE  Use custom target file FILE
 
+Commands:
+   -l, --list       Shows de content of target file
+   -e, --edit       Opens editor for target file
+   -h, --help       Shows this help
+
+Porcelain commands:
+   -a, --add=REGEX  Add REGEX to target file (must take care of shell expansion)
+                     though as a verbose command for scripting
+
+Examples:
+
+ $ git ignore target
+ $ git ignore -i .project .classpath
+ $ git ignore -i .project .classpath -x target
+ $ git ignore -x --add *.bak
+ $ git ignore -x -e
 EOF
    exit 1
 }
