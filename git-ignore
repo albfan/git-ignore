@@ -35,6 +35,33 @@ EOF
    exit 1
 }
 
+function find_editor {
+
+    if [ -n "$EDITOR" ]
+    then
+        return
+    fi
+    if [ -n "$VISUAL" ]
+    then
+        EDITOR="$VISUAL"
+    elif hash vi &> /dev/null
+    then
+        EDITOR=vi
+    elif hash vim &> /dev/null
+    then
+        EDITOR=vim
+    elif hash pico &> /dev/null
+    then
+        EDITOR=pico
+    elif hash nano &> /dev/null
+    then
+        EDITOR=nano
+    elif hash emacs &> /dev/null
+    then
+        EDITOR=emacs
+    fi
+}
+
 if [ $# == 0 ]
 then 
    cat >&2 <<EOF
@@ -48,6 +75,8 @@ TEMP=$(getopt -o "leha:f:ix" -l add:,list,edit,remove-last,file:,help,ignore,exc
 
 # Se procesan los argumentos del script
 eval set -- "$TEMP"
+
+find_editor
 
 while true
 do
@@ -70,7 +99,7 @@ do
          cat $FILE_DEST
          exit 0;;
       -e|--edit)
-         vi $FILE_DEST
+         $EDITOR $FILE_DEST
          exit 0;;   
       --remove-last)
          sed -i '$d' $FILE_DEST
