@@ -66,14 +66,14 @@ if [ $# == 0 ]
 then 
    cat >&2 <<EOF
 
-Faltan argumentos
+At least one argument must be provided
 EOF
    help
 fi
 
 TEMP=$(getopt -o "leha:f:ix" -l add:,list,edit,remove-last,file:,help,ignore,exclude -n $0 -- "$@")
 
-# Se procesan los argumentos del script
+# process script arguments
 eval set -- "$TEMP"
 
 find_editor
@@ -104,7 +104,7 @@ do
       --remove-last)
          sed -i '$d' $FILE_DEST
          exit 0;;   
-      -h) # --help is captured by git and converted in git help ...
+      -h|--help) # --help is captured by git and converted in git help so is useless by now
          help ;;
       --) 
          shift
@@ -116,7 +116,7 @@ do
       *) 
          cat <&2 <<EOF
 
-Error, argumentos $@ desconocidos
+Error, unknow arguments $@
 EOF
          exit 1 ;;
    esac
