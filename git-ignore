@@ -71,7 +71,7 @@ EOF
    help
 fi
 
-TEMP=$(getopt -o "leha:f:ix" -l add:,list,edit,remove-last,file:,help,ignore,exclude -n $0 -- "$@")
+TEMP=$(getopt -o "leha:f:ix" -l add:,list,edit,remove-last,file:,help,ignore,exclude -n $(basename $0) -- "$@" || help)
 
 # process script arguments
 eval set -- "$TEMP"
