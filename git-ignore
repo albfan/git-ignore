@@ -10,6 +10,8 @@ FILE_DEST="$FILE_EXCLUDE"
 function help {
    cat >&2 <<EOF
 
+Get rid of that noisy files
+
 Target file configuration:
    -x, --exclude    File target $FILE_EXCLUDE (default)
    -i, --ignore     File target $FILE_IGNORE
@@ -31,6 +33,7 @@ Examples:
  $ git ignore -i .idea/ '*.ipr' '*.iws' -x target
  $ git ignore -x --add '*.bak'
  $ git ignore -x -e
+
 EOF
    exit 1
 }
@@ -118,6 +121,7 @@ do
 
 Error, unknow arguments $@
 EOF
+         help
          exit 1 ;;
    esac
    shift
