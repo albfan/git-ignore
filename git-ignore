@@ -18,7 +18,7 @@ Target file configuration:
    -f, --file=FILE  Use custom target file FILE
 
 Commands:
-   -l, --list       Shows de content of target file
+   -l, --list       Shows content of target file
    -e, --edit       Opens editor for target file
    -h, --help       Shows this help
 
