@@ -10,7 +10,7 @@ FILE_DEST="$FILE_EXCLUDE"
 function help {
    cat >&2 <<EOF
 
-Get rid of that noisy files
+Get rid of those noisy files
 
 Target file configuration:
    -x, --exclude    File target $FILE_EXCLUDE (default)
@@ -18,7 +18,7 @@ Target file configuration:
    -f, --file=FILE  Use custom target file FILE
 
 Commands:
-   -l, --list       Shows de content of target file
+   -l, --list       Shows content of target file
    -e, --edit       Opens editor for target file
    -h, --help       Shows this help
 
