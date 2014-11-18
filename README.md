@@ -10,14 +10,14 @@ a good distinction between what you want to exclude privately or what you want t
 
 # Install
 
-I personally recommend to create a bin directory in $HOME, but this is just a personal inclination, link git-ignore
-somewhere in your $PATH and you are done
-
 ```bash
-$ git clone http://github.com/albfan/git-ignore
-$ cd git-ignore
-$ ln -s $(pwd)/git-ignore ~/bin/
+sudo make install
 ```
+# Uninstall
+```bash
+sudo make uninstall
+```
+
 # Examples
 
 Take a look to the contents of command line:
