@@ -119,7 +119,7 @@ do
       *) 
          cat <&2 <<EOF
 
-Error, unknow arguments $@
+Error, unknown arguments $@
 EOF
          help
          exit 1 ;;
