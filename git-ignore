@@ -113,7 +113,7 @@ do
          shift
          for param
          do
-            echo $param >> "$FILE_DEST" 
+            echo "$param" >> "$FILE_DEST" 
          done   
          break ;;
       *) 
