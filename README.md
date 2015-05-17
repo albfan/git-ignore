@@ -1,4 +1,6 @@
-# Intro
+# git-ignore [![Build Status](https://travis-ci.org/albfan/git-ignore.svg?branch=master)](https://travis-ci.org/albfan/git-ignore)
+
+## Intro
 This tries to commplete a missing command from git toolchain.
 
 By the years I found that powerful of git ignore is hide by complexity of touch internal .git directory.
@@ -8,17 +10,19 @@ obvious but is good to be rememeber.
 This tools focus to mitigate this fear and allow easy configuration of ignored files from your projects, allowing
 a good distinction between what you want to exclude privately or what you want to ignore publicly
 
-# Install
+## Install
 
 ```bash
 sudo make install
 ```
-# Uninstall
+
+## Uninstall
+
 ```bash
 sudo make uninstall
 ```
 
-# Examples
+## Examples
 
 Take a look to the contents of command line:
  
