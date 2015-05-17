@@ -5,7 +5,7 @@ compiler:
 
 before_install:
 
-script: make && sudo make install && cd t && make
+script: make && sudo make install && cd t && make DEfAULT_TEST_TARGET=tap
 
 ## whitelist
 branches:
