@@ -16,18 +16,6 @@ Read http://blogs.atlassian.com/2013/05/alternatives-to-git-submodule-git-subtre
 
 ## automation
 
-Although every test is executable by itselft an only depends on sharness, that's not operative. this test suite relays on [prove](http://search.cpan.org/dist/Test-Harness/bin/prove) and ancient and good-know [make](http://www.gnu.org/software/make/) to complete the test suite. Launch it with 
+Although every test is executable by itself an only depends on sharness, that's not operative. this test suite relays on [autotools support for tap](https://www.gnu.org/software/automake/manual/html_node/Use-TAP-with-the-Automake-test-harness.html#Use-TAP-with-the-Automake-test-harness) to complete the test suite. Launch it with:
 
-    make 
-
-or
-
-    make DEFAULT_TEST_TARGET=prove
-
-for tap output
-
-    make DEFAULT_TEST_TARGET=tap SHELL=/bin/bash
-
-## Credits
-
-Makefile was shamelessly stolen from [git-integration](https://github.com/johnkeeping/git-integration/blob/master/t/Makefile)
+    make check
