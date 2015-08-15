@@ -1,11 +1,16 @@
 language: c
 
+sudo: false
+
 compiler:
   - gcc
 
 before_install:
 
-script: make && sudo make install && cd t && make DEfAULT_TEST_TARGET=tap
+before_script:
+   - export PATH=$PATH:$PWD
+
+script: cd t && make DEfAULT_TEST_TARGET=tap
 
 ## whitelist
 branches:
