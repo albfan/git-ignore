@@ -1,4 +1,4 @@
-# git-ignore [![Build Status](https://travis-ci.org/albfan/git-ignore.svg?branch=master)](https://travis-ci.org/albfan/git-ignore)
+# git-ignore [![Build Status](https://travis-ci.org/albfan/git-ignore.svg?branch=master)](https://travis-ci.org/albfan/git-ignore) [![Coverage Status](https://coveralls.io/repos/albfan/git-ignore/badge.svg?branch=master&service=github)](https://coveralls.io/github/albfan/git-ignore?branch=master)
 
 ## Intro
 

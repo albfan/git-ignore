@@ -1,0 +1,25 @@
+
+Get rid of those noisy files
+
+Target file configuration:
+   -x, --exclude    File target .git/info/exclude (default)
+   -i, --ignore     File target .git/../.gitignore
+   -f, --file=FILE  Use custom target file FILE
+
+Commands:
+   -l, --list       Shows content of target file
+   -e, --edit       Opens editor for target file
+   -h, --help       Shows this help
+
+Porcelain commands:
+   -a, --add=REGEX  Add REGEX to target file (must take care of shell expansion)
+                     though as a verbose command for scripting
+
+Examples:
+
+ $ git ignore target
+ $ git ignore -i .project .classpath .settings
+ $ git ignore -i .idea/ '*.ipr' '*.iws' -x target
+ $ git ignore -x --add '*.bak'
+ $ git ignore -x -e
+
