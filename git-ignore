@@ -38,33 +38,6 @@ EOF
    exit 1
 }
 
-function find_editor {
-
-    if [ -n "$EDITOR" ]
-    then
-        return
-    fi
-    if [ -n "$VISUAL" ]
-    then
-        EDITOR="$VISUAL"
-    elif hash vi &> /dev/null
-    then
-        EDITOR=vi
-    elif hash vim &> /dev/null
-    then
-        EDITOR=vim
-    elif hash pico &> /dev/null
-    then
-        EDITOR=pico
-    elif hash nano &> /dev/null
-    then
-        EDITOR=nano
-    elif hash emacs &> /dev/null
-    then
-        EDITOR=emacs
-    fi
-}
-
 if [ $# == 0 ]
 then 
    cat >&2 <<EOF
@@ -102,7 +75,7 @@ do
          cat $FILE_DEST
          exit 0;;
       -e|--edit)
-         $EDITOR $FILE_DEST
+         $(git var GIT_EDITOR) $FILE_DEST
          exit 0;;   
       --remove-last)
          sed -i '$d' $FILE_DEST
