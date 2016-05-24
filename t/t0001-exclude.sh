@@ -1,7 +1,5 @@
 #!/bin/sh
 
-SHARNESS_TEST_EXTENSION="sh"
-
 test_description="Excluding files"
 
 . ./setup.sh

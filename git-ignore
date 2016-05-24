@@ -13,14 +13,16 @@ function help {
 Get rid of those noisy files
 
 Target file configuration:
-   -x, --exclude    File target $FILE_EXCLUDE (default)
-   -i, --ignore     File target $FILE_IGNORE
-   -f, --file=FILE  Use custom target file FILE
+   -x, --exclude      File target $FILE_EXCLUDE (default)
+   -i, --ignore       File target $FILE_IGNORE
+   -f, --file=FILE    Use custom target file FILE
 
 Commands:
-   -l, --list       Shows content of target file
-   -e, --edit       Opens editor for target file
-   -h, --help       Shows this help
+   -l, --list         Shows content of target file
+   -e, --edit         Opens editor for target file
+       --untracked    Exclude all untracked files
+       --remove-last  Remove last line of target file
+   -h, --help         Shows this help
 
 Porcelain commands:
    -a, --add=REGEX  Add REGEX to target file (must take care of shell expansion)
@@ -47,12 +49,10 @@ EOF
    help
 fi
 
-TEMP=$(getopt -o "leha:f:ix" -l add:,list,edit,remove-last,file:,help,ignore,exclude -n $(basename $0) -- "$@" || help)
+TEMP=$(getopt -o "leha:f:ix" -l add:,list,edit,remove-last,file:,help,ignore,exclude,untracked -n $(basename $0) -- "$@" || help)
 
 # process script arguments
 eval set -- "$TEMP"
-
-find_editor
 
 while true
 do
@@ -79,6 +79,9 @@ do
          exit 0;;   
       --remove-last)
          sed -i '$d' $FILE_DEST
+         exit 0;;   
+      --untracked)
+         git ls-files --others --exclude-standard >> "$FILE_DEST"
          exit 0;;   
       -h|--help) # --help is captured by git and converted in git help so is useless by now
          help ;;

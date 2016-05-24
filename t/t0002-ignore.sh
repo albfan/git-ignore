@@ -1,24 +1,21 @@
-#!/bin/sh
-
-SHARNESS_TEST_EXTENSION="sh"
+#!/bin/bash
 
 test_description="Ignoring files"
 
 . ./setup.sh
 
-DIR_TEST=$SHARNESS_TEST_DIRECTORY/t0002
-
-
 test_expect_success "Ignoring a single file" "
+    echo $0
+    ps -p $$
+    ls -l /proc/$$/exe | sed 's%.*/%%'
+    tree /proc/$$
     git init
     cp ../.simplecov .
     export COVERAGE_NAME=ignore
     touch file1
     $COMMAND -i file1
     rm .simplecov
-    git status --porcelain > out
-    diff $DIR_TEST/single.status out
-    rm out
+    diff $DIR_TEST/single.status <(git status --porcelain)
 "
 
 test_expect_success "Ignoring a bunch of files" "
@@ -30,9 +27,7 @@ test_expect_success "Ignoring a bunch of files" "
     $COMMAND -i 'file*'
     rm .simplecov
     touch file3
-    git status --porcelain > out
-    diff $DIR_TEST/bunch.status out 
-    rm out
+    diff $DIR_TEST/bunch.status <(git status --porcelain) 
 "
 
 test_done
