@@ -49,7 +49,7 @@ EOF
    help
 fi
 
-TEMP=$(getopt -o "leha:f:ix" -l add:,list,edit,remove-last,file:,help,ignore,exclude,untracked -n $(basename $0) -- "$@" || help)
+TEMP=$(getopt -o "leha:f:ixu" -l add:,list,edit,remove-last,file:,help,ignore,exclude,untracked -n $(basename $0) -- "$@" || help)
 
 # process script arguments
 eval set -- "$TEMP"
@@ -80,7 +80,7 @@ do
       --remove-last)
          sed -i '$d' $FILE_DEST
          exit 0;;   
-      --untracked)
+      -u|--untracked)
          git ls-files --others --exclude-standard >> "$FILE_DEST"
          exit 0;;   
       -h|--help) # --help is captured by git and converted in git help so is useless by now

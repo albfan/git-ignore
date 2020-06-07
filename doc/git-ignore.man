@@ -33,7 +33,8 @@ git-ignore \- Get rid of those noisy files
 .sp
 .nf
 \fIgit ignore\fR [\-x|\-\-exclude | \-i|\-\-ignore | \-f|\-\-file]
-           [\-l|\-\-list | \-e|\-\-edit] [\-h|\-\-help]
+           [\-l|\-\-list | \-e|\-\-edit] [\-u|\-\-untracked]
+           [\-\-remove\-last] [\-h|\-\-help]
 .fi
 .sp
 .SH "DESCRIPTION"
@@ -63,6 +64,16 @@ Show content of target file\&.
 \-e, \-\-edit
 .RS 4
 Opens editor for target file\&.
+.RE
+.PP
+\-u, \-\-untracked
+.RS 4
+Exclude all untracked files\&.
+.RE
+.PP
+\-\-remove\-last
+.RS 4
+Remove last line of target file\&.
 .RE
 .PP
 \-h, \-\-help
