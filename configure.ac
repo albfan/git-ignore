@@ -6,6 +6,7 @@ AM_INIT_AUTOMAKE([foreign 1.11])
 AC_PROG_INSTALL
 
 AC_CONFIG_FILES([Makefile
+		 etc/Makefile
                  doc/Makefile
                  t/Makefile])
 AC_REQUIRE_AUX_FILE([tap-driver.sh])
