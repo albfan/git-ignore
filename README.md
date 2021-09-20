@@ -13,7 +13,7 @@ This tool focus on mitigate fear about `.git` directory -hiding its complexitys-
 ## Install
 
 ```bash
-./autogen.sh
+./autogen.sh --prefix /usr
 make
 make check
 sudo make install
