@@ -5,7 +5,8 @@ AM_INIT_AUTOMAKE([foreign 1.11])
 
 AC_PROG_INSTALL
 
-AC_CONFIG_FILES([Makefile
+AC_CONFIG_FILES([git-ignore
+		 Makefile
 		 etc/Makefile
                  doc/Makefile
                  t/Makefile])

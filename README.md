@@ -41,6 +41,7 @@ Commands:
    -l, --list       Shows de content of target file
    -e, --edit       Opens editor for target file
    -h, --help       Shows this help
+   -v, --version    Shows git ignore version
 
 Porcelain commands:
    -a, --add=REGEX  Add REGEX to target file (must take care of shell expansion)

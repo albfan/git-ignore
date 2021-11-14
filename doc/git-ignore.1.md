@@ -47,6 +47,9 @@ Easy configuration of git ignored and excluded files
 -h, --help
 :   Shows this help.
 
+-v, --version
+:   Shows git ignore version.
+
 # FILES
 
 .git/info/exclude
