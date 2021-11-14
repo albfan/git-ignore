@@ -1,5 +1,5 @@
 AC_PREREQ([2.68])
-AC_INIT([git-ignore], [1.0], [albertofanjul@gmail.com])
+AC_INIT([git-ignore], [2.0], [albertofanjul@gmail.com])
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE([foreign 1.11])
 
