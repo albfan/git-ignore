@@ -60,7 +60,7 @@ EOF
 }
 
 if [ $# == 0 ]
-then 
+then
    cat >&2 <<EOF
 
 At least one argument must be provided
@@ -77,12 +77,12 @@ while true
 do
    case "$1" in
       -a|--add)
-         echo $2 >> "$FILE_DEST" 
-         shift 
+         echo $2 >> "$FILE_DEST"
+         shift
          ;;
       -f|--file)
-         FILE_DEST="$2" 
-         shift 
+         FILE_DEST="$2"
+         shift
          ;;
       -g|--global)
          if [ -n "$GLOBAL_FILE_IGNORE" ]
@@ -102,33 +102,33 @@ EOF
          FILE_DEST="$IGNORE_FILE"
          ;;
       -x|--exclude)
-         FILE_DEST="$FILE_EXCLUDE" 
+         FILE_DEST="$FILE_EXCLUDE"
          ;;
       -i|--ignore)
-         FILE_DEST="$FILE_IGNORE" 
+         FILE_DEST="$FILE_IGNORE"
          ;;
-      -l|--list) 
+      -l|--list)
          cat $FILE_DEST
          exit 0;;
       -e|--edit)
          $(git var GIT_EDITOR) $FILE_DEST
-         exit 0;;   
+         exit 0;;
       --remove-last)
          sed -i '$d' $FILE_DEST
-         exit 0;;   
+         exit 0;;
       -u|--untracked)
          git ls-files --others --exclude-standard >> "$FILE_DEST"
-         exit 0;;   
+         exit 0;;
       -h|--help) # --help is captured by git and converted in git help so is useless by now
          help ;;
-      --) 
+      --)
          shift
          for param
          do
-            echo "$param" >> "$FILE_DEST" 
-         done   
+            echo "$param" >> "$FILE_DEST"
+         done
          break ;;
-      *) 
+      *)
          cat <&2 <<EOF
 
 Error, unknown arguments $@
