@@ -14,6 +14,12 @@ Easy configuration of git ignored and excluded files
 
 # OPTIONS
 
+-r, --relative
+:   File target .gitignore in current directory.
+
+-g, --global
+:   File target global ignore config (defined on git config --global --get core.excludesFile).
+
 -x, --exclude
 :   File target .git/info/exclude (default).
 

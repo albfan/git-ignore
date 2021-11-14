@@ -17,10 +17,12 @@
 
 #set -xv
 
+IGNORE_FILE=".gitignore"
 GIT_DIRECTORY=$(git rev-parse --git-dir)
 FILE_EXCLUDE="$GIT_DIRECTORY/info/exclude"
-FILE_IGNORE="$GIT_DIRECTORY/../.gitignore"
+FILE_IGNORE="$GIT_DIRECTORY/../$IGNORE_FILE"
 FILE_DEST="$FILE_EXCLUDE"
+GLOBAL_FILE_IGNORE="$(git config --global --get core.excludesFile)"
 
 function help {
    cat >&2 <<EOF
@@ -31,6 +33,8 @@ Target file configuration:
    -x, --exclude      File target $FILE_EXCLUDE (default)
    -i, --ignore       File target $FILE_IGNORE
    -f, --file=FILE    Use custom target file FILE
+   -r, --relative     File target $IGNORE_FILE on current dir
+   -g, --global       File target (${GLOBAL_FILE_IGNORE:-undefined})
 
 Commands:
    -l, --list         Shows content of target file
@@ -64,7 +68,7 @@ EOF
    help
 fi
 
-TEMP=$(getopt -o "leha:f:ixu" -l add:,list,edit,remove-last,file:,help,ignore,exclude,untracked -n $(basename $0) -- "$@" || help)
+TEMP=$(getopt -o "leha:f:ixurg" -l add:,list,edit,remove-last,file:,help,ignore,exclude,untracked,global,relative -n $(basename $0) -- "$@" || help)
 
 # process script arguments
 eval set -- "$TEMP"
@@ -79,6 +83,23 @@ do
       -f|--file)
          FILE_DEST="$2" 
          shift 
+         ;;
+      -g|--global)
+         if [ -n "$GLOBAL_FILE_IGNORE" ]
+         then
+           FILE_DEST="$GLOBAL_FILE_IGNORE"
+         else
+           cat <&2 <<EOF
+
+Error, global ignore file not defined. It can be done with:
+
+git config --global core.excludesFile ~/.gitignore
+EOF
+           exit 1
+         fi
+         ;;
+      -r|--relative)
+         FILE_DEST="$IGNORE_FILE"
          ;;
       -x|--exclude)
          FILE_DEST="$FILE_EXCLUDE" 

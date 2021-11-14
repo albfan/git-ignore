@@ -31,9 +31,11 @@ Take a look to the contents of command line:
  
 ```
 Target file configuration:
-   -x, --exclude    File target $FILE_EXCLUDE (default)
-   -i, --ignore     File target $FILE_IGNORE
+   -x, --exclude    File target $GIT_DIR/info/exclude (default)
+   -i, --ignore     File target $GIT_DIR/../$FILE_IGNORE
    -f, --file=FILE  Use custom target file FILE
+   -r, --relative   File target .gitignore on current dir
+   -g, --global     File target (~/.gitignore)
 
 Commands:
    -l, --list       Shows de content of target file
@@ -48,6 +50,8 @@ Examples:
 
  $ git ignore target    #ignore maven compilation on exclude file (locally)
  $ git ignore -i .project .classpath .settings    #ignore IDE config files on .gitignore
+ $ cd doc
+ $ git ignore -r '*.pdf' #ignore pdf generated files
  $ git ignore -i .idea/ '*.ipr' '*.iws' -x target    #oneliner for the two commands above
  $ git ignore -x --add '*.bak'    #example for sane usage on scripts
  $ git ignore -x -e    #edit exclude file
