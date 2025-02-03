@@ -61,15 +61,6 @@ EOF
    exit 1
 }
 
-if [ $# == 0 ]
-then
-   cat >&2 <<EOF
-
-At least one argument must be provided
-EOF
-   help
-fi
-
 TEMP=$(getopt -o "leha:f:ixurgv" -l add:,list,edit,remove-last,file:,help,ignore,exclude,untracked,global,relative,version -n $(basename $0) -- "$@" || help)
 
 # process script arguments
@@ -129,6 +120,17 @@ EOF
          help ;;
       --)
          shift
+
+         if [ $# == 0 ]
+         then
+            cat >&2 <<EOF
+
+         At least one argument must be provided
+EOF
+            help
+            exit 1
+         fi
+
          for param
          do
             echo "$param" >> "$FILE_DEST"
